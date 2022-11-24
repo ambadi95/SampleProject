@@ -13,7 +13,8 @@
     "@react-native-firebase/app": "^16.4.6",
     "@react-native-firebase/database": "^16.4.6",
     "react": "17.0.2",
-    "react-native": "0.67.0"
+    "react-native": "0.67.0",
+    "react-native-vector-icons": "^9.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
