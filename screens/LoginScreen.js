@@ -1,25 +1,62 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {
     Button,
     StyleSheet,
     Text,
     View,
+    ActivityIndicator
   } from 'react-native';
 import CommonTextField from './components/CommonTextField';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+
+const LoginScreen =({navigation})=>{ 
+
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
+
+  const [loading, setLoading] = useState(false);
+
+  const saveUser= async()=>{
+    if(email != null && password != null){
+      setLoading(true);
+    const user = await AsyncStorage.setItem('user' , email);
+    setLoading(false);
+   navigation.navigate('Home')
+    }else {
+      console.log('Please fill the form')
+    }
+  }
+  
+  const fetchUser = async () =>{
+      setLoading(true);
+      const user = await AsyncStorage.getItem('user');
+      console.log(user);
+     
+      if(user != null){
+        navigation.navigate('Home')
+      }
+      setLoading(false);
+  }
   
 
-const LoginScreen =()=>{
+
+    
+
     return (<View style={styles.sectionContainer}>
+      {loading && <ActivityIndicator size='large' />}
+  
       <View style={styles.textContainer}>
         <Text style={styles.sectionTitle}>STEPPING STONE</Text>
         </View>
         <Text style={styles.welcomeTitle}>Welcome Mont User!</Text>
-        <CommonTextField hint={'Email'} onChange={()=>{}}/>
-        <CommonTextField hint={'Password'} secureTextEntry={true} onChange={()=>{}}/>
+        <CommonTextField hint={'Email'} value={email} onChangeText={setEmail} onChange={()=>{}}/>
+        <CommonTextField hint={'Password'} value={password} onChangeText={setPassword} secureTextEntry={true} onChange={()=>{}}/>
         <Text style={styles.forgotPasswordText}>Forgot Password?</Text>
         <View style={styles.buttonStyle}>
-        <Button title='LOGIN'/>
+        <Button title='LOGIN' onPress={()=> saveUser() }/>
         </View>
+    
     </View>);
 }
 

@@ -8,8 +8,7 @@
 
 import React from 'react';
 import {SafeAreaView,} from 'react-native';
-
-import LoginScreen from './screens/LoginScreen';
+import Navigation from './screens/Navigation/Navigation';
 
 
 
@@ -28,12 +27,10 @@ const App = () => {
   //   });
  // }
 
-
-
   return (
-    <SafeAreaView>
-      <LoginScreen/>
-    </SafeAreaView>
+
+        <Navigation/>
+  
   );
 };
 

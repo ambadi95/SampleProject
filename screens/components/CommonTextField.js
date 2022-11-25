@@ -7,12 +7,13 @@ import {
 
   import Icon from 'react-native-vector-icons/AntDesign';
 
-const CommonTextField =({hint, secureTextEntry,onChange, value})=>{
+const CommonTextField =({hint, secureTextEntry,onChange, value, onChangeText})=>{
     return <View style={styles.searchSection}>
     <TextInput
         style={styles.input}
         placeholder={hint}
         onChange={onChange}
+        onChangeText={onChangeText}
         underlineColorAndroid="transparent"
         secureTextEntry={secureTextEntry}
         value={value}
