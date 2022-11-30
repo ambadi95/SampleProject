@@ -7,7 +7,7 @@ import {
 
   import Icon from 'react-native-vector-icons/AntDesign';
 
-const CommonTextField =({hint, secureTextEntry,onChange, value, onChangeText})=>{
+const CommonTextField =({hint, secureTextEntry,onChange, value, onChangeText, icon})=>{
     return <View style={styles.searchSection}>
     <TextInput
         style={styles.input}
@@ -18,7 +18,7 @@ const CommonTextField =({hint, secureTextEntry,onChange, value, onChangeText})=>
         secureTextEntry={secureTextEntry}
         value={value}
     />
-     <Icon style={styles.searchIcon} name="user" size={20} color="#000"/>
+    {icon}
 </View>
 }
 

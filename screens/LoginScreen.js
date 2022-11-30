@@ -8,6 +8,7 @@ import {
   } from 'react-native';
 import CommonTextField from './components/CommonTextField';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import Icon from 'react-native-vector-icons/AntDesign';
 
 
 const LoginScreen =({navigation})=>{ 
@@ -39,8 +40,6 @@ const LoginScreen =({navigation})=>{
       setLoading(false);
   }
   
-
-
     
 
     return (<View style={styles.sectionContainer}>
@@ -50,8 +49,8 @@ const LoginScreen =({navigation})=>{
         <Text style={styles.sectionTitle}>STEPPING STONE</Text>
         </View>
         <Text style={styles.welcomeTitle}>Welcome Mont User!</Text>
-        <CommonTextField hint={'Email'} value={email} onChangeText={setEmail} onChange={()=>{}}/>
-        <CommonTextField hint={'Password'} value={password} onChangeText={setPassword} secureTextEntry={true} onChange={()=>{}}/>
+        <CommonTextField hint={'Email'} value={email} onChangeText={setEmail} icon={<Icon style={styles.searchIcon} name="user" size={20} color="#000"/>}/>
+        <CommonTextField hint={'Password'} value={password} onChangeText={setPassword} secureTextEntry={true} icon={<Icon style={styles.searchIcon} name="eyeo" size={20} color="#000"/>}/>
         <Text style={styles.forgotPasswordText}>Forgot Password?</Text>
         <View style={styles.buttonStyle}>
         <Button title='LOGIN' onPress={()=> saveUser() }/>
