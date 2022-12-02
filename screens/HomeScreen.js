@@ -4,16 +4,15 @@ import { View, Text , Button} from "react-native"
 
 const HomeScreen = ({navigation,title}) =>{
 
-    const logout=async()=>{
-       await AsyncStorage.clear();
-       navigation.goBack();
-    }
+  const goToProfile=()=>{
+    navigation.navigate('Profile');
+  }
 
     return (
     
      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <Text>{title}</Text>
-    
+      <Button title='Profile' onPress={()=> goToProfile() }/>
     </View>
     
     )

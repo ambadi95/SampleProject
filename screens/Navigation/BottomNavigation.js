@@ -3,7 +3,6 @@ import HomeScreen from "../HomeScreen";
 import { Button, Alert} from "react-native";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/AntDesign';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Tab = createBottomTabNavigator();
 
@@ -11,15 +10,32 @@ const Tab = createBottomTabNavigator();
 const BottomNavigation=({navigation})=> {
 
 
-  const logout=async()=>{
-    await AsyncStorage.clear();
-    navigation.goBack();
- }
 
     return (
       <Tab.Navigator
       screenOptions={({ route }) => ({
-        
+        headerShown : false,
+        headerRight: () => (
+          <Button
+            onPress={() => Alert.alert("Alert","Are you sure ?",[
+              {
+                text: "Cancel",
+                style: "cancel",
+              },
+              {
+                text: "Ok",
+                onPress: () => logout(),
+                style: "ok",
+              },
+            ],
+            {
+              cancelable : true
+            }
+            )}
+            title="Log out"
+            color="black"
+          />
+        ),
         tabBarIcon: ({ focused, color, size }) => {
           let iconName;
 
@@ -41,29 +57,7 @@ const BottomNavigation=({navigation})=> {
         },
       })}
     >
-        <Tab.Screen name="Dashboard" children={()=> <HomeScreen title="Dashboard" navigation={navigation}/> } options={{
-          headerRight: () => (
-            <Button
-              onPress={() => Alert.alert("Alert","Are you sure ?",[
-                {
-                  text: "Cancel",
-                  style: "cancel",
-                },
-                {
-                  text: "Ok",
-                  onPress: () => logout(),
-                  style: "ok",
-                },
-              ],
-              {
-                cancelable : true
-              }
-              )}
-              title="Log out"
-              color="black"
-            />
-          ),
-        }}/>
+        <Tab.Screen name="Dashboard" children={()=> <HomeScreen title="Dashboard" navigation={navigation}/> } />
         <Tab.Screen name="Inventory" children={()=> <HomeScreen title="Inventory" navigation={navigation}/>} />
         <Tab.Screen name="Opportunity" children={()=> <HomeScreen title="Opportunity" navigation={navigation}/>} />
         <Tab.Screen name="Cart" children={()=> <HomeScreen title="Cart"/>}  navigation={navigation}/>

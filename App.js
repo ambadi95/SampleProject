@@ -9,6 +9,7 @@
 import React from 'react';
 import {SafeAreaView,} from 'react-native';
 import Navigation from './screens/Navigation/Navigation';
+import 'react-native-gesture-handler';
 
 
 

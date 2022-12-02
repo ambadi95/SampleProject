@@ -5,6 +5,8 @@ import LoginScreen from '../LoginScreen';
 import HomeScreen from '../HomeScreen';
 import BottomNavigation from './BottomNavigation';
 import SplashScreen from '../SplashScreen';
+import Dashboard from '../Dashboard';
+import ProfileScreen from '../ProfileScreen';
 
  const Navigation =()=> {
 
@@ -15,7 +17,10 @@ import SplashScreen from '../SplashScreen';
         screenOptions={{headerShown: false }}>
           <Stack.Screen  name="Splash" component={SplashScreen} />
             <Stack.Screen  name="Login" component={LoginScreen} />
-            <Stack.Screen  name="Home" component={BottomNavigation} />
+            <Stack.Screen  name="Home" component={Dashboard} />
+            <Stack.Screen name="Profile" component={ProfileScreen} options={{
+              headerShown : true
+            }}/>
         </Stack.Navigator>
   </NavigationContainer>
   );
