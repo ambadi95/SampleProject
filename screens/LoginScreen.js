@@ -2,16 +2,15 @@ import React, {useState} from 'react';
 import {Button, StyleSheet, Text, View, ActivityIndicator} from 'react-native';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import * as yup from 'yup';
 import {userSchema} from './validation/LoginValidation';
 import Icon from 'react-native-vector-icons/AntDesign';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import {Formik} from 'formik';
 
 import CommonTextField from './components/CommonTextField';
 
 const LoginScreen = ({navigation}) => {
   const [validateChange, setValidateChange] = useState(false);
-  const [password, setPassword] = useState();
 
   const [loading, setLoading] = useState(false);
 
@@ -19,22 +18,15 @@ const LoginScreen = ({navigation}) => {
       setLoading(true);
       const user = await AsyncStorage.setItem('user', email);
       setLoading(false);
-      navigation.navigate('Home');
-  
+      navigation.navigate("Home")
   };
 
-  const fetchUser = async () => {
-    setLoading(true);
-    const user = await AsyncStorage.getItem('user');
-    console.log(user);
+  const Stack = createNativeStackNavigator();
 
-    if (user != null) {
-      navigation.navigate('Home');
-    }
-    setLoading(false);
-  };
+
 
   return (
+   <View>
     <Formik
       initialValues={{email: '', password: ''}}
       validationSchema={userSchema}
@@ -42,7 +34,9 @@ const LoginScreen = ({navigation}) => {
       validateOnBlur={false}
       onSubmit={values =>{
         console.log("Pressed")
-        saveUser(values.email)}}>
+        saveUser(values.email)
+      }}
+        >
       {({
         handleChange,
         handleBlur,
@@ -95,7 +89,7 @@ const LoginScreen = ({navigation}) => {
             }
           />
         
-          <Text style={styles.forgotPasswordText}>Forgot Password?</Text>
+          <Text style={styles.forgotPasswordText} onPress={()=> navigation.navigate("ForgotPassword")}>Forgot Password?</Text>
           <View style={styles.buttonStyle}>
             <Button title="LOGIN" onPress={ ()=>{
               setValidateChange(true);
@@ -104,6 +98,7 @@ const LoginScreen = ({navigation}) => {
         </View>
       )}
     </Formik>
+    </View>
   );
 };
 

@@ -6,15 +6,20 @@
  * @flow strict-local
  */
 
-import React from 'react';
+import React,{useEffect} from 'react';
 import Navigation from './screens/Navigation/Navigation';
 
+import SplashScreen from 'react-native-splash-screen';
 
 
 
 
 const App = () => {
 
+
+  useEffect(()=>{
+    SplashScreen.hide();
+  },[])
   // const [data , useData] = useState("String");
 
   // const readData =()=>{

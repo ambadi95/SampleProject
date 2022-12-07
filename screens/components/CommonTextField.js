@@ -1,8 +1,6 @@
 import React from 'react';
 import {TextInput, StyleSheet, View, Text} from 'react-native';
 
-import Icon from 'react-native-vector-icons/AntDesign';
-
 const CommonTextField = ({
   hint,
   secureTextEntry,

@@ -3,6 +3,7 @@ import HomeScreen from "../HomeScreen";
 import { Button, Alert} from "react-native";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/AntDesign';
+import OpportunityScreen from "../OpportunityScreen";
 
 const Tab = createBottomTabNavigator();
 
@@ -59,7 +60,7 @@ const BottomNavigation=({navigation})=> {
     >
         <Tab.Screen name="Dashboard" children={()=> <HomeScreen title="Dashboard" navigation={navigation}/> } />
         <Tab.Screen name="Inventory" children={()=> <HomeScreen title="Inventory" navigation={navigation}/>} />
-        <Tab.Screen name="Opportunity" children={()=> <HomeScreen title="Opportunity" navigation={navigation}/>} />
+        <Tab.Screen name="Opportunity" children={()=> <OpportunityScreen/>}/>
         <Tab.Screen name="Cart" children={()=> <HomeScreen title="Cart"/>}  navigation={navigation}/>
       </Tab.Navigator>
     );
