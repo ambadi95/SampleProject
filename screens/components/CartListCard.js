@@ -1,14 +1,15 @@
 import React from 'react';
-import {View, StyleSheet, Text, TouchableOpacity, Image} from 'react-native';
+import {View, StyleSheet, Text, Image} from 'react-native';
 
-import Icon from 'react-native-vector-icons/AntDesign';
+import CartAddRemove from './CartAddRemove';
 
-const ProductListCard = ({
+const CartListCard = ({
   projectDiscription,
   price,
   discount,
   offer,
   onPressAdd,
+  onPressMinus
 }) => {
   return (
     <View style={styles.mainContainer}>
@@ -21,23 +22,15 @@ const ProductListCard = ({
         </View>
         <View style={{flex: 0.9}}>
           <Text style={styles.descreptionText}>{projectDiscription}</Text>
-          <View style={styles.priceContianer}>
+          <View style={styles.priceContainer}>
           <Text style={styles.priceText}>$ {price}</Text>
           <Text style={styles.offerText}>$ {discount}</Text>
-          </View>
           <Text style={styles.saveText}>You Save $ {offer}</Text>
+          </View>
+          <Text style={styles.soldByText}>Sold by <Text style={styles.sellerText}>Reliance Retail</Text></Text>
           <View style={styles.buttonContainer}>
-            <TouchableOpacity onPress={onPressAdd}>
-              <View style={styles.button}>
-                <Text style={styles.buttonText}>ADD</Text>
-                <Icon
-                  name="plus"
-                  size={15}
-                  color="white"
-                  style={{paddingTop: 2}}
-                />
-              </View>
-            </TouchableOpacity>
+           <Text style={styles.saveForLaterText}>SAVE FOR LATER</Text>
+            <CartAddRemove onPressAdd={onPressAdd} onPressMinus={onPressMinus}/>
           </View>
         </View>
       </View>
@@ -64,34 +57,13 @@ const styles = StyleSheet.create({
     padding: 2,
     fontSize: 14,
     color: 'black',
+    fontWeight : 'bold'
   },
   saveText: {
     padding: 2,
     fontSize: 11,
     color: 'green',
     fontWeight: 'bold',
-  },
-  buttonContainer: {
-    alignItems: 'flex-end',
-    marginRight: 10,
-  },
-  button: {
-    width: '35%',
-    paddingLeft: 10,
-    paddingRight: 10,
-    paddingTop: 2,
-    paddingBottom: 2,
-    borderRadius: 4,
-    backgroundColor: 'skyblue',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-  buttonText: {
-    color: 'white',
-    fontWeight: 'bold',
-  },
-  priceContianer:{
-    flexDirection : 'row'
   },
   offerText:{
     padding: 2,
@@ -100,6 +72,35 @@ const styles = StyleSheet.create({
     textDecorationLine: 'line-through',
     textDecorationStyle: 'solid'
   },
+  buttonContainer: {  
+    flexDirection : 'row',
+    justifyContent : 'space-between',
+    alignItems: 'flex-end',
+
+  },
+  buttonText: {
+    color: 'white',
+    fontWeight: 'bold',
+  },
+  priceContainer : {
+    flexDirection : 'row',
+    justifyContent : 'flex-start',
+    alignItems : 'baseline',
+  },
+  soldByText:{
+    padding: 2,
+    fontSize: 12,
+    color: 'black',
+    fontWeight : 'bold'
+  },
+  sellerText:{
+    color: 'blue'
+  },
+  saveForLaterText:{
+    color : 'grey',
+    fontSize : 12
+  }
+  
 });
 
-export default ProductListCard;
+export default CartListCard;

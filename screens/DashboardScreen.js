@@ -16,8 +16,6 @@ const DashboardScreen = () => {
       <View style={styles.titleContainer}>
         <Text style={styles.titleText}> Dashboard</Text>
       </View>
-
-      <ScrollView>
         <FlatList
           data={productList}
           renderItem={({item}) => (
@@ -25,11 +23,11 @@ const DashboardScreen = () => {
               projectDiscription={item.projectDes}
               price={item.price}
               offer={item.offer}
-              onPressAdd={() => dispatch(addToCart)}
+              discount={item.discount}
+              onPressAdd={() => dispatch(addToCart(item))}
             />
           )}
         />
-      </ScrollView>
     </View>
   );
 };

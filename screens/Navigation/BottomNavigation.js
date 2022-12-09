@@ -2,14 +2,20 @@ import React from "react";
 import HomeScreen from "../HomeScreen";
 import { Button, Alert} from "react-native";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import {useSelector, useDispatch} from 'react-redux';
 import Icon from 'react-native-vector-icons/AntDesign';
 import OpportunityScreen from "../OpportunityScreen";
 import DashboardScreen from "../DashboardScreen";
+import CartScreen from "../Cart";
 
 const Tab = createBottomTabNavigator();
 
 
 const BottomNavigation=({navigation})=> {
+
+  const dispatch = useDispatch();
+
+  const {totalItem} = useSelector(state => state.dashboard);
 
 
 
@@ -62,7 +68,9 @@ const BottomNavigation=({navigation})=> {
         <Tab.Screen name="Dashboard" children={()=> <DashboardScreen /> } />
         <Tab.Screen name="Inventory" children={()=> <HomeScreen title="Inventory" navigation={navigation}/>} />
         <Tab.Screen name="Opportunity" children={()=> <OpportunityScreen/>}/>
-        <Tab.Screen name="Cart" children={()=> <HomeScreen title="Cart"/>}  navigation={navigation}/>
+        <Tab.Screen name="Cart" children={()=> <CartScreen/>} options={{
+        tabBarBadge: totalItem                          // This is for bar Badge
+        }}/>
       </Tab.Navigator>
     );
   }
