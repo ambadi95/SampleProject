@@ -9,16 +9,23 @@ const CartListCard = ({
   discount,
   offer,
   onPressAdd,
-  onPressMinus
+  onPressMinus,
+  qty,
+  img
 }) => {
   return (
     <View style={styles.mainContainer}>
       <View style={styles.topContainer}>
         <View style={{flex: 0.3}}>
+        <View>
           <Image
-            source={{uri: 'https://facebook.github.io/react/img/logo_og.png'}}
+           source={{
+            uri: 'https://reactnative.dev/img/tiny_logo.png',
+          }}
             resizeMode={'cover'}
+            style={{width: 70, height: 70} }
           />
+          </View>
         </View>
         <View style={{flex: 0.9}}>
           <Text style={styles.descreptionText}>{projectDiscription}</Text>
@@ -30,7 +37,7 @@ const CartListCard = ({
           <Text style={styles.soldByText}>Sold by <Text style={styles.sellerText}>Reliance Retail</Text></Text>
           <View style={styles.buttonContainer}>
            <Text style={styles.saveForLaterText}>SAVE FOR LATER</Text>
-            <CartAddRemove onPressAdd={onPressAdd} onPressMinus={onPressMinus}/>
+            <CartAddRemove onPressAdd={onPressAdd} onPressMinus={onPressMinus} qty={qty}/>
           </View>
         </View>
       </View>

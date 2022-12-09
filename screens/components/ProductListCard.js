@@ -9,15 +9,21 @@ const ProductListCard = ({
   discount,
   offer,
   onPressAdd,
+  img
 }) => {
   return (
     <View style={styles.mainContainer}>
       <View style={styles.topContainer}>
         <View style={{flex: 0.3}}>
+        <View>
           <Image
-            source={{uri: 'https://facebook.github.io/react/img/logo_og.png'}}
+           source={{
+            uri: 'https://reactnative.dev/img/tiny_logo.png',
+          }}
             resizeMode={'cover'}
+            style={{width: 70, height: 70} }
           />
+          </View>
         </View>
         <View style={{flex: 0.9}}>
           <Text style={styles.descreptionText}>{projectDiscription}</Text>
@@ -27,8 +33,8 @@ const ProductListCard = ({
           </View>
           <Text style={styles.saveText}>You Save $ {offer}</Text>
           <View style={styles.buttonContainer}>
-            <TouchableOpacity onPress={onPressAdd}>
-              <View style={styles.button}>
+            <TouchableOpacity onPress={onPressAdd} style={styles.button}>
+              
                 <Text style={styles.buttonText}>ADD</Text>
                 <Icon
                   name="plus"
@@ -36,7 +42,7 @@ const ProductListCard = ({
                   color="white"
                   style={{paddingTop: 2}}
                 />
-              </View>
+              
             </TouchableOpacity>
           </View>
         </View>
@@ -91,7 +97,8 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   priceContianer:{
-    flexDirection : 'row'
+    flexDirection : 'row',
+    justifyContent : 'flex-start'
   },
   offerText:{
     padding: 2,

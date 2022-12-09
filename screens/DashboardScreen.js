@@ -14,7 +14,7 @@ const DashboardScreen = () => {
   return (
     <View style={styles.mainContainer}>
       <View style={styles.titleContainer}>
-        <Text style={styles.titleText}> Dashboard</Text>
+      
       </View>
         <FlatList
           data={productList}
@@ -24,6 +24,7 @@ const DashboardScreen = () => {
               price={item.price}
               offer={item.offer}
               discount={item.discount}
+              img={item.image}
               onPressAdd={() => dispatch(addToCart(item))}
             />
           )}

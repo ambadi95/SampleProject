@@ -2,7 +2,7 @@ import React from 'react';
 import {View, Text, StyleSheet, FlatList} from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
 
-import { addToCart, removeFromCart } from '../store/DashboardSlice';
+import { itemQtyDecrease, removeFromCart, itemQtyIncrease } from '../store/DashboardSlice';
 import CartListCard from './components/CartListCard';
 import CommonButton from './components/CommonButton';
 
@@ -22,11 +22,13 @@ const CartScreen = () => {
           renderItem={({item,index}) => (
             <CartListCard
               projectDiscription={item.projectDes}
-              price={item.price}
+              price={item.cartPrice}
               offer={item.offer}
               discount={item.discount}
-              onPressAdd={() => console.log("minus") }
-              onPressMinus={()=> dispatch(removeFromCart(index)) }
+              qty={item.qty}
+              img={item.image}
+              onPressAdd={() => dispatch(itemQtyIncrease(index)) }
+              onPressMinus={()=> dispatch(itemQtyDecrease(index)) }
             />
           )}
         />

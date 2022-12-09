@@ -2,7 +2,7 @@ import React from "react";
 import { View, TouchableOpacity,StyleSheet, Text } from "react-native";
 import Icon from 'react-native-vector-icons/AntDesign';
 
-const CartAddRemove=({onPressAdd, onPressMinus})=>{
+const CartAddRemove=({onPressAdd, onPressMinus, qty})=>{
 
     return(
         <View style={styles.mainContainer}>
@@ -14,7 +14,7 @@ const CartAddRemove=({onPressAdd, onPressMinus})=>{
                   style={{paddingTop: 2}}
                 />
             </TouchableOpacity>
-            <Text style={styles.quantityText}>1</Text>
+            <Text style={styles.quantityText}>{qty}</Text>
         <TouchableOpacity onPress={onPressAdd} style={styles.button}>
                 <Icon
                   name="plus"
