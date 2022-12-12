@@ -15,12 +15,18 @@ import { PersistGate } from "redux-persist/integration/react"
 import SplashScreen from 'react-native-splash-screen';
 import store from './store/store';
 
+import {requestUserPermission, notificationOpen} from './utils/NotificationService';
+
 const App = () => {
   useEffect(() => {
     SplashScreen.hide();
+    requestUserPermission();
+    notificationOpen();
   }, []);
 
   let persistor = persistStore(store)
+
+
   // const [data , useData] = useState("String");
 
   // const readData =()=>{

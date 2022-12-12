@@ -4,7 +4,6 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import LoginNavigation from './LoginNavigator';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Dashboard from '../Dashboard';
-import ProfileScreen from '../ProfileScreen';
 import {ActivityIndicator} from 'react-native';
 import ForgotPassword from '../ForgotPassword';
 
@@ -23,6 +22,8 @@ const Navigation = () => {
   useEffect(() => {
     fetchUser();
   }, []);
+
+  
 
   const Stack = createNativeStackNavigator();
   return (

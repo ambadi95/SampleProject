@@ -1,6 +1,6 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { View } from 'react-native';
+import messaging from '@react-native-firebase/messaging';
 
 import ProfileScreen from './ProfileScreen';
 import DraweNavigation from './Navigation/DrawerNavigation';
