@@ -48,6 +48,8 @@ export const DashboardSlice = createSlice({
         cartList : [],
         totalAmount: 0,
         totalItem : 0,
+        notification : 1,
+        notificationMessage : null
     },
     reducers :{
         addToCart : (state, action) => {
@@ -106,11 +108,21 @@ export const DashboardSlice = createSlice({
               const sum = arraySum(state.cartList);
               state.totalAmount = sum;
             }
+          },
+          showNotification : (state )=>{
+            state.notification = 0
+          },
+          hideNotification : (state)=>{
+            state.notification = 1
+          },
+          notificationAdd : (state,action)=>{
+            state.notificationMessage = action.payload
+    
           }
     }
 
 })
 
-export const {addToCart, removeFromCart, itemQtyIncrease, itemQtyDecrease} = DashboardSlice.actions
+export const {addToCart, removeFromCart, itemQtyIncrease, itemQtyDecrease, showNotification, hideNotification, notificationAdd} = DashboardSlice.actions
 
 export default DashboardSlice.reducer

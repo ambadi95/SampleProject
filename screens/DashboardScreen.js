@@ -1,15 +1,32 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {View, StyleSheet, FlatList} from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
+import messaging from '@react-native-firebase/messaging';
 
-import { addToCart } from '../store/DashboardSlice';
+import { addToCart, showNotification, notificationAdd } from '../store/DashboardSlice';
 import ProductListCard from './components/ProductListCard';
 
 const DashboardScreen = () => {
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch();  
+
+  useEffect(()=>{
+    getNotification();
+  },[])
+
 
   const {productList} = useSelector(state => state.dashboard);
+
+  const getNotification=()=>{
+    messaging().onMessage(async remoteMessage =>{
+      console.log("Dashboard.", remoteMessage);
+     dispatch(showNotification());
+     dispatch(notificationAdd({
+      title : remoteMessage.notification.title,
+      body : remoteMessage.notification.body
+     }))
+  })
+  }
 
   return (
     <View style={styles.mainContainer}>

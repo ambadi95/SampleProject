@@ -5,11 +5,11 @@ import { DrawerContentScrollView, DrawerItemList, DrawerItem } from "@react-navi
 
 
 
-const DrawerContent = (props) => {
+const DrawerContent = ({navigation}) => {
 
     const logout=async()=>{
         await AsyncStorage.clear();
-        props.navigation.navigate("Login");
+        navigation.goBack();
      }
     
 

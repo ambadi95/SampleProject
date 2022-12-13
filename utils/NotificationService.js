@@ -1,8 +1,6 @@
 import messaging from '@react-native-firebase/messaging';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import { Alert } from 'react-native';
-
 export async function requestUserPermission() {
   const authStatus = await messaging().requestPermission();
   const enabled =
@@ -21,10 +19,11 @@ export async function requestUserPermission() {
     if(!fcmToken){
         console.log("no token");
         try {
+          console.log("gettingToken");
             const fcmTokn = await messaging().getToken();
+            console.log("new Token");
             console.log(fcmTokn);
             if(fcmTokn){
-                console.log(fcmTokn);
                await AsyncStorage.setItem("fcmToken", fcmTokn); 
 
             }
@@ -60,6 +59,7 @@ export const notificationOpen=()=>{
 
         messaging().onMessage(async remoteMessage =>{
             console.log("Notification Foreground state.....", remoteMessage);
-            Alert.alert(JSON.stringify(remoteMessage.notification.title), JSON.stringify(remoteMessage.notification.body));
+            //Alert.alert(JSON.stringify(remoteMessage.notification.title), JSON.stringify(remoteMessage.notification.body));
+           
         })
 }
